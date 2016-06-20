@@ -8,11 +8,12 @@ use App\Http\Requests;
 use App\News;
 use App\Image;
 use App\Group;
+use App\Http\Requests\NewsRequest;
 
 class AdminPRNewsesController extends Controller
 {
     public function __construct() {
-    	// $this->middleware('auth');
+    	$this->middleware('admin:2');
     }
 
     public function index() {
@@ -24,16 +25,12 @@ class AdminPRNewsesController extends Controller
         return view('admin.news.create')->withGroups($groups);
     }
 
-    public function store(Request $request) {
+    public function store(NewsRequest $request) {
         $news = new News();
         $news->title = $request->title;
         $news->body = $request->body;
         $news->save();
-
-        $news->groups()->sync($request->groups);
-
-        $images = $request->images;
-        foreach ($images as $img) {
+        foreach ($request->images as $img) {
             $extension = $img->getClientOriginalExtension();
             $filename =  str_random(40).time().'.'.$extension;
             $img->move('images/', $filename);
@@ -41,9 +38,10 @@ class AdminPRNewsesController extends Controller
             $image = new Image();
             $image->path = $filename;
             $image->news_id = $news->id;
-            $image->save();           
+            $image->save();
         }
-
+       
+        $news->groups()->sync($request->groups);
         return redirect('/admin');
     }
 
@@ -53,25 +51,27 @@ class AdminPRNewsesController extends Controller
         return view('admin.news.edit')->withNews($news)->withGroups($groups);
     }
 
-    public function update($id, Request $request) {
+    public function update($id, NewsRequest $request) {
         $news = News::find($id);
         $news->title = $request->title;
         $news->body = $request->body;
-        $news->save();
-
-        $news->groups()->sync($request->groups);
-
-        $images = $request->images;
-        foreach ($images as $img) {
+        $news->images()->delete();
+        $images = null;
+        foreach ($request->images as $img) {
             $extension = $img->getClientOriginalExtension();
             $filename =  str_random(40).time().'.'.$extension;
             $img->move('images/', $filename);
             
             $image = new Image();
             $image->path = $filename;
-            $image->news_id = $news->id;
-            $image->save();           
+
+            $images[] = $image;
         }
+
+        $news->images()->saveMany($images);
+        $news->save();
+
+        $news->groups()->sync($request->groups);
         return redirect('/admin');
     }
 

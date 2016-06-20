@@ -35,11 +35,11 @@
 						<td>
 							<div class="action">
 								<form action="/admin/users/{{ $user->id }}/edit" method="get" accept-charset="utf-8">
-									<button type="submit"><i class="fa fa-pencil-square-o"></i></button>
+									<button type="submit" class="fa fa-pencil-square-o"></button>
 								</form>
 								<form action="/admin/users/{{ $user->id }}" method="post" accept-charset="utf-8">
 									{{  csrf_field() }}
-									<button type="submit"><i class="fa fa-trash"></i></button>
+									<button type="submit" class="fa fa-trash"></button>
 									<input type="hidden" name="_method" value="DELETE">
 								</form>
 							</div>

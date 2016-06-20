@@ -3,7 +3,9 @@
 @section('title')
 	Admin Index
 @endsection
-
+@section('css')
+	<link rel="stylesheet" type="text/css" href="/customs/css/admin/news/css/index.css">
+@endsection
 @section('content')
 	<div class="create-news">
 		<div class="container-fluid">
@@ -45,11 +47,11 @@
 					<td>
 						<div class="action">
 							<form action="/admin/{{ $nws->id }}/edit" method="get" accept-charset="utf-8">
-								<button type="submit"><i class="fa fa-pencil-square-o"></i></button>
+								<button type="submit" class="fa fa-pencil-square-o"></button>
 							</form>
 							<form action="/admin/{{ $nws->id }}" method="post" accept-charset="utf-8">
 								{{  csrf_field() }}
-								<button type="submit"><i class="fa fa-trash"></i></button>
+								<button type="submit" class="fa fa-trash"></button>
 								<input type="hidden" name="_method" value="DELETE">
 							</form>
 						</div>

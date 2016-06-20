@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>PR News - @yield('title')</title>
+    <title>PRNews - @yield('title')</title>
 
     <link rel="stylesheet" href="/bootstrap/css/font-awesome.min.css">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="/customs/css/layouts/css/admin.css">
+    
     @yield('css')
 
 </head>
@@ -27,13 +28,12 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    PR-News
+                <a class="navbar-brand" href="{{ url('/admin') }}">
+                    PRNews
                 </a>
                 <ul class="nav navbar-nav navbar-left">
                     <li><a href="{{ url('/admin/groups') }}">Groups</a></li>
                     <li><a href="{{ url('/admin/users') }}">Users</a></li>
-                    <li><a href="{{ url('/admin') }}">News</a></li>
                 </ul>
                 
             </div>

@@ -12,13 +12,13 @@
 			</div>
 			<div class="panel-body">
 				<div class="col-md-4">
-					<div id="carousel-id" class="carousel slide" data-ride="carousel">
+					<div id="carousel-id-{{ $nws->id }}" class="carousel slide" data-ride="carousel">
 						<ol class="carousel-indicators">
 							@for ($i = 0; $i < sizeOf($nws->images); $i++)
 								@if ($i == 0)
-									<li data-target="#carousel-id" data-slide-to="{{ $i }}" class="active"></li>
+									<li data-target="#carousel-id-{{ $nws->id }}" data-slide-to="{{ $i }}" class="active"></li>
 								@else
-									<li data-target="#carousel-id" data-slide-to="{{ $i }}"></li>
+									<li data-target="#carousel-id-{{ $nws->id }}" data-slide-to="{{ $i }}"></li>
 								@endif
 							@endfor
 						</ol>
@@ -35,8 +35,8 @@
 								@endif
 							@endfor
 						</div>
-						<a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-						<a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+						<a class="left carousel-control" href="#carousel-id-{{ $nws->id }}" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+						<a class="right carousel-control" href="#carousel-id-{{ $nws->id }}" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 					</div>
 				</div>
 				<div class="col-md-8">

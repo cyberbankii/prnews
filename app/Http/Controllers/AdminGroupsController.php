@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use App\Group;
+use App\Http\Requests\GroupRequest;
 
 class AdminGroupsController extends Controller
 {
     public function __construct() {
-    	// $this->middleware('auth');
+    	$this->middleware('admin:2');
     }
 
     public function index() {
@@ -22,7 +22,7 @@ class AdminGroupsController extends Controller
     	return view('admin.groups.create');
     }
 
-    public function store(Request $request) {
+    public function store(GroupRequest $request) {
         Group::create($request->all());
         return redirect('/admin/groups');
     }
@@ -32,7 +32,7 @@ class AdminGroupsController extends Controller
     	return view('admin.groups.edit')->withGroup($group);
     }
 
-    public function update($id, Request $request) {
+    public function update($id, GroupRequest $request) {
         $group = Group::find($id);
         $group->name = $request->name;
         $group->save();

@@ -11,7 +11,7 @@ use App\Group;
 class AdminUsersController extends Controller
 {
     public function __construct() {
-    	// $this->middleware('auth');
+    	$this->middleware('admin:2');
     }
 
     public function index() {

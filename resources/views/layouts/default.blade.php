@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>PR News - @yield('title')</title>
+    <title>PRNews - @yield('title')</title>
 
     <link rel="stylesheet" href="/bootstrap/css/font-awesome.min.css">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/customs/css/layouts/css/default.css">
 
     @yield('css')
 
@@ -28,7 +29,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    PR-News
+                    PRNews
                 </a>
             </div>
 
